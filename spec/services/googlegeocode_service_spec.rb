@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe GooglegeocodeService do
   describe 'instance methods' do
-    it 'get_lat_long' do
+    it '#get_lat_long' do
       service = GooglegeocodeService.new
       results = service.get_lat_long('denver,co')
 
