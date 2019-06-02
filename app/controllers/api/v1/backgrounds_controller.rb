@@ -5,8 +5,8 @@ class Api::V1::BackgroundsController < ApplicationController
     latitude = results[:lat]
     longitude = results[:lng]
     flickr_service = FlickrService.new
-    results = flickr_service.get_background_image(latitude, longitude)
-    # render json: results
+    image = flickr_service.get_image_url(latitude, longitude)
+    render json: image
     # render json: BackgroundsSerializer.new(Backgrounds.find(params[:id])) ?
   end
 end
