@@ -1,8 +1,6 @@
 class SweaterweatherFacade
   def initialize(location)
-    @darksky_service = DarkskyService.new
-    @flickr_service = FlickrService.new
-    @geocode_service = GooglegeocodeService.new
+    initialize_services
     @location = location
     @latitude = latitude_longitude[:lat]
     @longitude= latitude_longitude[:lng]
@@ -18,6 +16,17 @@ class SweaterweatherFacade
 
   def latitude_longitude
     @_latitude_longitude ||= @geocode_service.get_lat_long(@location)
+  end
+
+  private
+
+  def initialize_services
+    @darksky_service = DarkskyService.new
+    @flickr_service = FlickrService.new
+    @geocode_service = GooglegeocodeService.new
+    # @favorites_service = FavoritesService.new
+    # @sessions_service = SessionsService.new
+    # @users_service = UsersService.new
   end
 end
 
