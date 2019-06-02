@@ -4,13 +4,25 @@ describe FlickrService do
   describe 'instance methods' do
     it '#get_background_image' do
       service = FlickrService.new
-      results = service.get_background_image(39.7392358, -104.990251)
+      results = service.get_background_image_data(39.7392358, -104.990251)[0]
 
-      expect(results[0]).to have_key(:id)
-      expect(results[0]).to have_key(:owner)
-      expect(results[0]).to have_key(:secret)
-      expect(results[0]).to have_key(:server)
-      expect(results[0]).to have_key(:farm)
+      expect(results).to have_key(:id)
+      expect(results).to have_key(:owner)
+      expect(results).to have_key(:secret)
+      expect(results).to have_key(:server)
+      expect(results).to have_key(:farm)
+    end
+
+    it '#get_image_url' do
+      service = FlickrService.new
+      data = service.get_background_image_data(39.7392358, -104.990251)[0]
+      result = service.get_image_url(39.7392358, -104.990251)
+      farm = data[:farm]
+      server = data[:server]
+      id = data[:id]
+      secret = data[:secret]
+
+      expect(result).to eq("https://farm#{farm}.staticflickr.com/#{server}/#{id}_#{secret}.jpg")
     end
   end
 end

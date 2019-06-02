@@ -1,7 +1,16 @@
 class FlickrService
 
-  def get_background_image(latitude, longitude)
+  def get_background_image_data(latitude, longitude)
     get_json(latitude, longitude)
+  end
+
+  def get_image_url(latitude, longitude)
+    data = get_background_image_data(latitude, longitude)[0]
+    farm = data[:farm]
+    server = data[:server]
+    id = data[:id]
+    secret = data[:secret]
+    "https://farm#{farm}.staticflickr.com/#{server}/#{id}_#{secret}.jpg"
   end
 
   private
@@ -13,6 +22,7 @@ class FlickrService
       f.params['safe_search'] = 1
       f.params['content_type'] = 1
       f.params['geo_context'] = 2
+      f.params['per_page'] = 1
       f.params['format'] = 'json'
       f.params['nojsoncallback'] = 1
       f.adapter Faraday.default_adapter
