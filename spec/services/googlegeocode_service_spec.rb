@@ -2,12 +2,12 @@ require 'rails_helper'
 
 describe GooglegeocodeService do
   describe 'instance methods' do
-    it 'get_long_lat' do
+    it 'get_lat_long' do
       service = GooglegeocodeService.new
-      results = service.get_long_lat('denver,co')
-      
-      expect(results[0][:geometry][:location][:lat]).to eq(39.7392358)
-      expect(results[0][:geometry][:location][:lng]).to eq(-104.990251)
+      results = service.get_lat_long('denver,co')
+
+      expect(results[:lat]).to eq(39.7392358)
+      expect(results[:lng]).to eq(-104.990251)
     end
   end
 end
