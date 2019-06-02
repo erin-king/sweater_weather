@@ -4,6 +4,9 @@ class Api::V1::ForecastController < ApplicationController
     results = geocode_service.get_lat_long(params[:location])
     latitude = results[:lat]
     longitude = results[:lng]
+    darksky_service = DarkskyService.new
+    results = darksky_service.get_forecast(latitude, longitude)
+    render json: results
     # render json: ForecastSerializer.new(Forecast.find(params[:id])) ?
   end
 end
