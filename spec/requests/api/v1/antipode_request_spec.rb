@@ -4,7 +4,7 @@ describe 'Antipode API' do
   it 'sends antipode summary data' do
     get '/api/v1/antipode?loc=hongkong'
 
-    results = JSON.parse(response.body, symbolize_names: true)[:data]
+    results = JSON.parse(response.body, symbolize_names: true) #[:data]
 
     expect(response).to be_successful
     expect(results[:data][0]).to have_key(:id)
