@@ -19,14 +19,21 @@ class SweaterweatherFacade
   end
 
   def antipode_summary
-    @geocode_service.get_lat_long('hongkong')
-    conn = Faraday.new('http://amypode.herokuapp.com/api/v1/antipodes?lat=27&long=-82') do |f|
+    # latitude_longitude
+    coords = @geocode_service.get_lat_long('hongkong')
+    latitude = coords[:lat]
+    longitude = coords[:lng]
+    conn = Faraday.new("http://amypode.herokuapp.com/api/v1/antipodes?lat=#{latitude}&long=#{longitude}") do |f|
       f.headers['api_key'] = ENV['AMYPODE_KEY']
       f.adapter Faraday.default_adapter
     end
     response = conn.get
     results = JSON.parse(response.body, symbolize_names: true)
-binding.pry
+    # results = {:data=>{:id=>"1", :type=>"antipode", :attributes=>{:lat=>-22.3193039, :long=>-65.8306389}}}
+    antipode_latitude = results[:data][:attributes][:lat]
+    antipode_longitude = results[:data][:attributes][:long]
+    forecast = @darksky_service.get_forecast(antipode_latitude, antipode_longitude)
+    binding.pry
   end
 
   private
