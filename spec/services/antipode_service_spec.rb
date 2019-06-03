@@ -2,7 +2,16 @@ require 'rails_helper'
 
 describe AntipodeService do
   describe 'instance methods' do
-    it '#get_antipode_summary' do
+    it '#get_antipode_first_results' do
+      service = AntipodeService.new
+      results = service.get_antipode_first_results(22.39, 114.10) #(lat, long)
+      # results = {:data=>{:id=>"1", :type=>"antipode", :attributes=>{:lat=>-22.3193039, :long=>-65.8306389}}}
+      binding.pry
+      expect(results[:data]).to have_key(:id)
+      expect(results[:data][:attributes]).to have_key(:lat)
+    end
+
+    xit '#get_antipode_summary' do
       service = AntipodeService.new
       results = service.get_antipode_summary(22.39, 114.10) #(lat, long)
 
