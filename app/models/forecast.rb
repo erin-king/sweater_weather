@@ -15,7 +15,7 @@ class Forecast
 
   def currently
     {
-      time: @currently[:time],
+      time: Time.at(@currently[:time]),
       summary: @currently[:summary],
       icon: @currently[:icon],
       termperature: @currently[:temperature],
@@ -38,7 +38,7 @@ class Forecast
   def hourly
     @hourly.map do |by_hour|
       {
-        time: by_hour[:time],
+        time: Time.at(by_hour[:time]),
         temperature: by_hour[:temperature],
         icon: by_hour[:icon]
       }
@@ -48,12 +48,11 @@ class Forecast
   def daily
     @daily.map do |by_day|
       {
-        summary: by_day[:summary],
         icon: by_day[:icon],
         humidity: by_day[:humidity],
         high: by_day[:temperatureHigh],
         low: by_day[:temperatureLow],
-        time: by_day[:time]
+        time: Time.at(by_day[:time])
       }
     end
   end
