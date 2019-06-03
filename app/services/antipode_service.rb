@@ -1,8 +1,9 @@
 class AntipodeService
-  # def get_antipode_summary(location)
-  #   coords = geocode_service.get_lat_long('hongkong')
-  #   latitude = coords[:lat]
-  #   longitude = coords[:lng]
+  # def get_antipode_summary(latitude, longitude)
+  #   # coords = geocode_service.get_lat_long(location)
+  #
+  #   # latitude = coords[:lat]
+  #   # longitude = coords[:lng]
   #   conn = Faraday.new("http://amypode.herokuapp.com/api/v1/antipodes?lat=#{latitude}&long=#{longitude}") do |f|
   #     f.headers['api_key'] = ENV['AMYPODE_KEY']
   #     f.adapter Faraday.default_adapter

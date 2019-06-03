@@ -20,9 +20,6 @@ class SweaterweatherFacade
   end
 
   def antipode_summary
-    # latitude_longitude
-    # @antipode_service.get_antipode_summary(@location)
-
     coords = @geocode_service.get_lat_long(@location)
     latitude = coords[:lat]
     longitude = coords[:lng]
@@ -36,6 +33,7 @@ class SweaterweatherFacade
     antipode_latitude = results[:data][:attributes][:lat]
     antipode_longitude = results[:data][:attributes][:long]
     forecast = @darksky_service.get_forecast(antipode_latitude, antipode_longitude)
+    binding.pry
   end
 
   private
@@ -50,6 +48,3 @@ class SweaterweatherFacade
     # @users_service = UsersService.new
   end
 end
-
-# render json: ForecastSerializer.new(Forecast.find(params[:id])) ?
-# rails g serializer Order id order_number
