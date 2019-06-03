@@ -33,7 +33,6 @@ class SweaterweatherFacade
     antipode_latitude = results[:data][:attributes][:lat]
     antipode_longitude = results[:data][:attributes][:long]
     forecast = @darksky_service.get_forecast(antipode_latitude, antipode_longitude)
-    binding.pry
   end
 
   private
