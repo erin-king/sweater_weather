@@ -20,10 +20,8 @@ class SweaterweatherFacade
   end
 
   def antipode_summary
-    coords = @geocode_service.get_lat_long(@location)
-    latitude = coords[:lat]
-    longitude = coords[:lng]
-    conn = Faraday.new("http://amypode.herokuapp.com/api/v1/antipodes?lat=#{latitude}&long=#{longitude}") do |f|
+    binding.pry
+    conn = Faraday.new("http://amypode.herokuapp.com/api/v1/antipodes?lat=#{@latitude}&long=#{@longitude}") do |f|
       f.headers['api_key'] = ENV['AMYPODE_KEY']
       f.adapter Faraday.default_adapter
     end
