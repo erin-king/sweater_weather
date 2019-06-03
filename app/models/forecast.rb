@@ -18,7 +18,7 @@ class Forecast
       time: Time.at(@currently[:time]),
       summary: @currently[:summary],
       icon: @currently[:icon],
-      termperature: @currently[:temperature],
+      temperature: @currently[:temperature],
       feels_like: @currently[:apparentTemperature]
     }
   end
