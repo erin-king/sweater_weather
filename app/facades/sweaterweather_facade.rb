@@ -1,4 +1,5 @@
 class SweaterweatherFacade
+
   def initialize(location)
     initialize_services
     @location = location
@@ -20,7 +21,9 @@ class SweaterweatherFacade
 
   def antipode_summary
     # latitude_longitude
-    coords = @geocode_service.get_lat_long('hongkong')
+    # @antipode_service.get_antipode_summary(@location)
+
+    coords = @geocode_service.get_lat_long(@location)
     latitude = coords[:lat]
     longitude = coords[:lng]
     conn = Faraday.new("http://amypode.herokuapp.com/api/v1/antipodes?lat=#{latitude}&long=#{longitude}") do |f|
@@ -41,6 +44,7 @@ class SweaterweatherFacade
     @darksky_service = DarkskyService.new
     @flickr_service = FlickrService.new
     @geocode_service = GooglegeocodeService.new
+    @antipode_service = AntipodeService.new
     # @favorites_service = FavoritesService.new
     # @sessions_service = SessionsService.new
     # @users_service = UsersService.new
