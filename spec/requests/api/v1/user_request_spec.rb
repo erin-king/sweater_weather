@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe 'User API', type: :request do
-  describe 'POST /users' do
+  describe 'POST /api/v1/users' do
     context 'when the request is valid' do
-      before { post '/todos', params: { "email": "whatever@example.com",
+      before { post '/api/v1/users', params: { "email": "whatever@example.com",
                                         "password": "password",
                                         "password_confirmation": "password"}
               }
@@ -19,7 +19,7 @@ describe 'User API', type: :request do
       end
 
       it 'returns an api_key' do
-        # expect(response).to have_content?(['api_key']'jgn983hy48thw9begh98h4539h4')
+        expect(response.body).to have_key(['api_key'])
       end
     end
 
@@ -32,7 +32,7 @@ describe 'User API', type: :request do
     #   it 'updates a users confirm_token' do
     #     user = User.create(email: 'user@email.com', password: 'password', first_name:'Jim', role: 0)
     #     expect(user.confirm_token).to eq(nil)
-    # 
+    #
     #     user.confirmation_token
     #     expect(user.confirm_token).to_not eq(nil)
     #     expect(user.confirm_token).to be_a(String)
@@ -40,7 +40,7 @@ describe 'User API', type: :request do
     # end
 
     context 'when the request is invalid' do
-      before { post '/todos', params: { "email": "whatever@example.com" } }
+      before { post '/api/v1/users', params: { "email": "whatever@example.com" } }
 
       it 'returns status code 401' do
         expect(response).to have_http_status(401)
