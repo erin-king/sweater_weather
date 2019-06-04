@@ -1,6 +1,5 @@
 class SweaterweatherFacade
   def initialize(location)
-    # initialize_services
     @location = location
     @latitude = latitude_longitude[:lat]
     @longitude = latitude_longitude[:lng]
@@ -20,15 +19,6 @@ class SweaterweatherFacade
 
   private
 
-  # def initialize_services
-  #   # @darksky_service = DarkskyService.new
-  #   # @flickr_service = FlickrService.new
-  #   # @geocode_service = GooglegeocodeService.new
-  #   # @favorites_service = FavoritesService.new
-  #   # @sessions_service = SessionsService.new
-  #   # @users_service = UsersService.new
-  # end
-
   def darksky_service
     @_darksky_service ||= DarkskyService.new
   end
@@ -40,7 +30,12 @@ class SweaterweatherFacade
   def geocode_service
     @_geocode_service ||= GooglegeocodeService.new
   end
+# ADD THESE SOON
+  # def user_service
+  #   @_user_service ||= UserService.new
+  # end
+  #
+  # def sessions_service
+  #   @_sessions_service ||= SessionsService.new
+  # end
 end
-
-# render json: ForecastSerializer.new(Forecast.find(params[:id])) ?
-# rails g serializer Order id order_number
