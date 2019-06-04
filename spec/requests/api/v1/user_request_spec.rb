@@ -9,17 +9,15 @@ describe 'User API', type: :request do
               }
 
       it 'creates a user' do
-        expect(json['email']).to eq("whatever@example.com")
-        expect(json['password']).to eq("password")
-        expect(json['password_confirmation']).to eq("password")
+
+        results = JSON.parse(response.body)
+
+        expect(response).to be_successful
+        expect(results["api_key"].length).to eq(22)
       end
 
       it 'returns a status code 201' do
         expect(response).to have_http_status(201)
-      end
-
-      it 'returns an api_key' do
-        expect(response.body).to have_key(['api_key'])
       end
     end
 
